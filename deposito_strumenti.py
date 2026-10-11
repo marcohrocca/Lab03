@@ -74,6 +74,14 @@ class DepositoStrumenti:
 
     def nuovo_prestito(self, data, id_strumento, cognome_allievo):
         """Crea un nuovo prestito"""
+        # controlliamo che id strumento sia presente nel sistema
+        problema = True
+        for s in self.strumenti:
+            if s.id == id_strumento:
+                problema = False
+                break
+        if problema:
+            raise Exception("Strumento non presente nel database")
         #come abbiamo fatto precedentemente per assegnare codice,troviamo max tra quelli
         #già esistenti e facciamo +1
         max_prestito=0
@@ -89,7 +97,6 @@ class DepositoStrumenti:
         prestito=Prestito(id_prestito,data,id_strumento,cognome_allievo)
         self.prestiti.append(prestito)
         return prestito
-        #manca da gestire strumento non presente nel sistema e
 
 
     def termina_prestito(self, id_prestito):
