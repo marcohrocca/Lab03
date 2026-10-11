@@ -89,7 +89,7 @@ class DepositoStrumenti:
         prestito=Prestito(id_prestito,data,id_strumento,cognome_allievo)
         self.prestiti.append(prestito)
         return prestito
-        #manca da gestire strumento non presente nel sistema
+        #manca da gestire strumento non presente nel sistema e
 
 
     def termina_prestito(self, id_prestito):
