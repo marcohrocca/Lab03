@@ -1,26 +1,7 @@
 #Importo attrgetter per ordinare successivamente per marca
 from operator import attrgetter
-class Strumento:
-    def __init__(self,id, tipo, marca, anno, valore):
-        self.id=id
-        self.tipo=tipo
-        self.marca=marca
-        self.anno=anno
-        self.valore=valore
-    def __str__(self):
-        return f"{self.id} {self.tipo} {self.marca} {self.anno} {self.valore}"
-
-class Prestito:
-    def __init__(self,id_prestito,data, id_strumento, cognome_allievo):
-        self.id_prestito=id_prestito
-        self.data=data
-        self.id_strumento=id_strumento
-        self.cognome_allievo=cognome_allievo
-    def __str__(self):
-        return f"{self.id_prestito} {self.data} {self.id_strumento} {self.cognome_allievo}"
-
-
-
+from strumento import  Strumento #Aggiunta correzzione col prof,dividere le varie classi in
+from prestito import Prestito    #file diversi per essere organizzati megl
 class DepositoStrumenti:
     def __init__(self, nome, responsabile):
         """Inizializza gli attributi e le strutture dati"""
@@ -41,12 +22,18 @@ class DepositoStrumenti:
 
     def carica_file_strumenti(self, file_path):
         """Carica gli strumenti dal file"""
-        with open(file_path,"r") as infile:
+        with ((((open(file_path,"r") as infile)))):
             #Leggiamo ogni riga,la puliamo e la dividiamo nei campi del csv
             for linea in infile:
                 linea=linea.strip()
                 campi=linea.split(",")
-                strumento=Strumento(campi[0],campi[1],campi[2],int(campi[3]),float(campi[4]))
+                #Aggiunta modifica correzione dare nome ai campi per identificarli meglio
+                id=campi[0]
+                tipo=campi[1]
+                marca=campi[2]
+                anno=int(campi[3])
+                valore=float(campi[4])
+                strumento=Strumento(id,tipo,marca,anno,valore)
                 self.strumenti.append(strumento)
 
 
